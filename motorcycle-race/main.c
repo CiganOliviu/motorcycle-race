@@ -18,6 +18,19 @@ FILE * OpenFile(const char * FileName)
     return File;
 }
 
+FILE * ValidateFile(const char * FileName)
+{
+    FILE * File = OpenFile(FileName);
+
+    if (!File)
+    {
+        printf("File not found.");
+        exit(5);
+    }
+
+    return File;
+}
+
 int GetNumberOfMotorcycles(FILE * File)
 {
     int NumberOfMotorcycles = 0;
@@ -138,6 +151,37 @@ void DisplayMotorcycles(MotorcycleFeatures * Motorcycles, int NumberOfMotorcycle
     printf("\n");
 }
 
+void PrepareCompetition(MotorcycleFeatures ** Motorcycles, int * NumberOfMotorcycles)
+{
+    FILE * MotorcyclesFile = ValidateFile("Motorcycles.txt");
+
+    *NumberOfMotorcycles = GetNumberOfMotorcycles(MotorcyclesFile);
+
+    fseek(MotorcyclesFile, 0, SEEK_SET);
+
+    *Motorcycles = GetMotorcycles(MotorcyclesFile);
+    DisplayMotorcycles(*Motorcycles, *NumberOfMotorcycles);
+
+    fclose(MotorcyclesFile);
+}
+
+char * EstablishesTheCircuit()
+{
+    FILE * CircuitFile = ValidateFile("Circuit.txt");
+
+    char * Circuit = GetCircuit(CircuitFile);
+
+    fclose(CircuitFile);
+
+    return Circuit;
+}
+
+void EstablishesTheRanking(MotorcycleFeatures * Motorcycles, int NumberOfMotorcycles, char * Circuit)
+{
+    SortMotorcycles(Motorcycles, NumberOfMotorcycles, Circuit);
+    DisplayMotorcycles(Motorcycles, NumberOfMotorcycles);
+}
+
 void EstablishesTheWinner(MotorcycleFeatures * Motorcycles)
 {
     printf("The winner is : %s.", Motorcycles[0].Brand);
@@ -151,37 +195,19 @@ void CloseFiles(FILE *MotorcyclesFile, FILE *CircuitFile)
 
 int main()
 {
-    FILE * MotorcyclesFile = OpenFile("Motorcycles.txt");
+    FILE * MotorcyclesFile = ValidateFile("Motorcycles.txt");
 
-    if (!MotorcyclesFile)
-    {
-        printf("File not found.");
-        exit(5);
-    }
+    int NumberOfMotorcycles;
+    MotorcycleFeatures * Motorcycles =
+            (MotorcycleFeatures *)malloc(MAX_NUMBER_OF_MOTORCYCLES * sizeof(MotorcycleFeatures));
 
-    int NumberOfMotorcycles = GetNumberOfMotorcycles(MotorcyclesFile);
+    PrepareCompetition(&Motorcycles, &NumberOfMotorcycles);
 
-    fseek(MotorcyclesFile, 0, SEEK_SET);
+    char * Circuit = EstablishesTheCircuit();
 
-    MotorcycleFeatures * Motorcycles = GetMotorcycles(MotorcyclesFile);
-    DisplayMotorcycles(Motorcycles, NumberOfMotorcycles);
-
-    FILE * CircuitFile = OpenFile("Circuit.txt");
-
-    if (!CircuitFile)
-    {
-        printf("File not found.");
-        exit(5);
-    }
-
-    char * Circuit = GetCircuit(CircuitFile);
-
-    SortMotorcycles(Motorcycles, NumberOfMotorcycles, Circuit);
-    DisplayMotorcycles(Motorcycles, NumberOfMotorcycles);
+    EstablishesTheRanking(Motorcycles, NumberOfMotorcycles, Circuit);
 
     EstablishesTheWinner(Motorcycles);
-
-    CloseFiles(MotorcyclesFile, CircuitFile);
 
     return 0;
 }
