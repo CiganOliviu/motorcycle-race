@@ -65,7 +65,6 @@ MotorcycleFeatures * GetMotorcycles(FILE * File)
 
     while (fgets(Line, 50, File))
     {
-
         int Position = 1;
         char * Word = strtok(Line, " ");
 
