@@ -1,3 +1,3 @@
-C:/Users/crist/OneDrive/Desktop/Github/motorcycle-race/cmake-build-debug/CMakeFiles/motorcycle_race.dir
-C:/Users/crist/OneDrive/Desktop/Github/motorcycle-race/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/crist/OneDrive/Desktop/Github/motorcycle-race/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/Code/git/motorcycle-race/motorcycle-race/cmake-build-debug/CMakeFiles/motorcycle_race.dir
+D:/Code/git/motorcycle-race/motorcycle-race/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Code/git/motorcycle-race/motorcycle-race/cmake-build-debug/CMakeFiles/rebuild_cache.dir
