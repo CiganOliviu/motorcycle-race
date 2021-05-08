@@ -192,12 +192,6 @@ void EstablishesTheWinner(MotorcycleFeatures * Motorcycles)
     printf("The winner is : %s.", Motorcycles[0].Brand);
 }
 
-void CloseFiles(FILE *MotorcyclesFile, FILE *CircuitFile)
-{
-    fclose(MotorcyclesFile);
-    fclose(CircuitFile);
-}
-
 int main()
 {
     FILE * MotorcyclesFile = ValidateFile("Motorcycles.txt");
