@@ -164,6 +164,8 @@ void PrepareCompetition(MotorcycleFeatures ** Motorcycles, int * NumberOfMotorcy
     fseek(MotorcyclesFile, 0, SEEK_SET);
 
     *Motorcycles = GetMotorcycles(MotorcyclesFile);
+
+    printf("We have %d competitors, which are : \n", *NumberOfMotorcycles);
     DisplayMotorcycles(*Motorcycles, *NumberOfMotorcycles);
 
     fclose(MotorcyclesFile);
@@ -183,6 +185,8 @@ char * EstablishesTheCircuit()
 void EstablishesTheRanking(MotorcycleFeatures * Motorcycles, int NumberOfMotorcycles, char * Circuit)
 {
     SortMotorcycles(Motorcycles, NumberOfMotorcycles, Circuit);
+
+    printf("The ranking is : \n");
     DisplayMotorcycles(Motorcycles, NumberOfMotorcycles);
 }
 
