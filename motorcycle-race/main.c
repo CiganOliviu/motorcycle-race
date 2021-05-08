@@ -43,6 +43,21 @@ int GetNumberOfMotorcycles(FILE * File)
     return NumberOfMotorcycles;
 }
 
+void GetPositionInStruct(MotorcycleFeatures * Motorcycles, int Index, int Position, char * Word)
+{
+    if (Position == 1)
+        strcpy(Motorcycles[Index].Brand, Word);
+
+    if (Position == 2)
+        Motorcycles[Index].MaxSpeedInStraightLine = (float)strtod(Word, NULL);
+
+    if (Position == 3)
+    {
+        Motorcycles[Index].MaxSpeedInCurve = (float)strtod(Word, NULL);
+        Index += 1;
+    }
+}
+
 MotorcycleFeatures * GetMotorcycles(FILE * File)
 {
     MotorcycleFeatures * Motorcycles =
@@ -59,16 +74,7 @@ MotorcycleFeatures * GetMotorcycles(FILE * File)
 
         while (Word != NULL)
         {
-            if (Position == 1)
-                strcpy(Motorcycles[Index].Brand, Word);
-
-            if (Position == 2)
-                Motorcycles[Index].MaxSpeedInStraightLine = (float)strtod(Word, NULL);
-
-            if (Position == 3) {
-                Motorcycles[Index].MaxSpeedInCurve = (float)strtod(Word, NULL);
-                Index += 1;
-            }
+            GetPositionInStruct(Motorcycles, Index, Position, Word);
 
             Position += 1;
             Word = strtok(NULL, " ");
