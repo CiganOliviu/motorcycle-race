@@ -193,8 +193,6 @@ void EstablishesTheWinner(MotorcycleFeatures * Motorcycles)
 
 int main()
 {
-    FILE * MotorcyclesFile = ValidateFile("Motorcycles.txt");
-
     int NumberOfMotorcycles;
     MotorcycleFeatures * Motorcycles =
             (MotorcycleFeatures *)malloc(MAX_NUMBER_OF_MOTORCYCLES * sizeof(MotorcycleFeatures));
