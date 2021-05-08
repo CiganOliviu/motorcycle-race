@@ -52,10 +52,7 @@ void GetPositionInStruct(MotorcycleFeatures * Motorcycles, int Index, int Positi
         Motorcycles[Index].MaxSpeedInStraightLine = (float)strtod(Word, NULL);
 
     if (Position == 3)
-    {
         Motorcycles[Index].MaxSpeedInCurve = (float)strtod(Word, NULL);
-        Index += 1;
-    }
 }
 
 MotorcycleFeatures * GetMotorcycles(FILE * File)
@@ -79,6 +76,8 @@ MotorcycleFeatures * GetMotorcycles(FILE * File)
             Position += 1;
             Word = strtok(NULL, " ");
         }
+
+        Index += 1;
     }
 
     return Motorcycles;
