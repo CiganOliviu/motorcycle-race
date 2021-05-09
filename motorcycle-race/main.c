@@ -82,10 +82,10 @@ MotorcycleFeatures * GetMotorcycles(FILE * File)
     return Motorcycles;
 }
 
-char * GetCircuit(FILE * CircuitFile)
+char * GetCircuit(FILE * File)
 {
     char * Circuit = (char *)malloc(50 * sizeof(char));
-    fgets(Circuit, 50, CircuitFile);
+    fgets(Circuit, 50, File);
 
     return Circuit;
 }
